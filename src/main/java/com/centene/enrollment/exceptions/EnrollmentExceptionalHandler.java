@@ -27,9 +27,9 @@ public class EnrollmentExceptionalHandler extends ResponseEntityExceptionHandler
 	public final ResponseEntity<ExceptionResponse> handleUserNotFoundException(EnrolleeNotFoundException ex,
 			WebRequest request) {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage());
-		return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(ConstraintViolationException.class)
 	public ResponseEntity<ExceptionResponse> handleCityNotFoundException(ConstraintViolationException ex, WebRequest request) {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage());
