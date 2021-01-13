@@ -12,7 +12,7 @@ $ mvn spring-boot:run
 2) Dependent
 
 ## Database 
-In-memory H2 Database with SpringBoot 
+In-memory H2 Database with SpringBoot is used.
 
 <dependency>
     <groupId>com.h2database</groupId>
@@ -20,9 +20,11 @@ In-memory H2 Database with SpringBoot
     <scope>runtime</scope>
 </dependency>
 
-## EndPoints Uris and Request and Response
+## EndPoints Uris - Request and Response, Validated in POSTMAN 
 
 GET : http://localhost:8080/enrollment/all
+
+##- Add a new enrollee:
 
 POST: http://localhost:8080/enrollment/create
 
@@ -32,6 +34,8 @@ POST: http://localhost:8080/enrollment/create
 "dateOfBirth" : "12-1-1995",
 "phoneNumber" : "123-343-5676"
 }
+
+##- Modify an existing enrollee:
 
 PUT: http://localhost:8080/enrollment/update
 
@@ -45,9 +49,13 @@ PUT: http://localhost:8080/enrollment/update
 
 GET : http://localhost:8080/enrollment/1
 
+##- Remove an enrollee entirely:
+
 DELETE : http://localhost:8080/enrollment/1
 
 GET: http://localhost:8080/enrollment/1/dependents
+
+##- Add dependents to an enrollee:
 
 POST: http://localhost:8080/enrollment/1/dependent
 {
@@ -60,6 +68,8 @@ POST: http://localhost:8080/enrollment/1/dependent
 	"dateOfBirth": "1-1-2013"
 }
 
+##- Modify existing dependents:
+
 PUT: http://localhost:8080/enrollment/1/dependent
 {
 "id" : "1",
@@ -69,6 +79,8 @@ PUT: http://localhost:8080/enrollment/1/dependent
 }
 
 GET: http://localhost:8080/enrollment/dependent/1
+
+##- Remove dependents from an enrollee :
 
 DELETE : http://localhost:8080/enrollment/1/dependent/2
 
