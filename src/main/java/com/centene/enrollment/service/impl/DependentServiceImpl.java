@@ -22,15 +22,30 @@ public class DependentServiceImpl implements DependentService {
 	@Autowired
 	DependentRepository dependentRepository;
 
+	/**
+	 * Get dependent details based on Id
+	 *
+	 * @param dependentId
+	 * @return Dependent
+	 */
+
 	@Override
 	public Optional<Dependent> getDependent(Long dependentId) {
 		Optional<Dependent> dependent = dependentRepository.findById(dependentId);
-        if(!dependent.isPresent()) {
-        	throw new EnrolleeNotFoundException("No Dependent Record Found");
-        }
+		if (!dependent.isPresent()) {
+			throw new EnrolleeNotFoundException("No Dependent Record Found");
+		}
 
-        return dependent;
+		return dependent;
 	}
+
+	/**
+	 * Create dependent details based on enrolleeId
+	 *
+	 * @param enrollee
+	 * @param dependent
+	 * @return Dependent
+	 */
 
 	@Override
 	public Dependent createDependent(Enrollee enrollee, Dependent dependent) {
@@ -38,24 +53,38 @@ public class DependentServiceImpl implements DependentService {
 		return dependentRepository.save(dependent);
 	}
 
+	/**
+	 * Update dependent details based on enrolleeId
+	 *
+	 * @param id
+	 * @param dependent
+	 * @return Dependent
+	 */
+
 	@Override
 	public Dependent updateDependent(Dependent dependent) {
 		Optional<Dependent> existdependent = dependentRepository.findById(dependent.getId());
-        if(!existdependent.isPresent()) {
-        	throw new EnrolleeNotFoundException("No Dependent Record Found");
-        }
-        existdependent.get().setDateOfBirth(dependent.getDateOfBirth());
-        existdependent.get().setName(dependent.getName());
+		if (!existdependent.isPresent()) {
+			throw new EnrolleeNotFoundException("No Dependent Record Found");
+		}
+		existdependent.get().setDateOfBirth(dependent.getDateOfBirth());
+		existdependent.get().setName(dependent.getName());
 		return dependentRepository.save(existdependent.get());
 	}
+
+	/**
+	 * Delete particular dependents details under enrolleeId
+	 *
+	 * @param dependentId
+	 */
 
 	@Override
 	public void deleteDependent(Long dependentId) {
 		Optional<Dependent> dependent = dependentRepository.findById(dependentId);
-    	if(!dependent.isPresent()) {
-    		throw new EnrolleeNotFoundException("No Dependent Record Found");
-    	}
-    	dependentRepository.deleteById(dependentId);
+		if (!dependent.isPresent()) {
+			throw new EnrolleeNotFoundException("No Dependent Record Found");
+		}
+		dependentRepository.deleteById(dependentId);
 	}
 
 }
